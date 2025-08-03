@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="faysys_payslip_generator.Views.SettingsPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="24">
+            
+            <!-- Header -->
+            <VerticalStackLayout Spacing="8">
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                    <Border Grid.Column="0" 
+                            BackgroundColor="{StaticResource Gray100}"
+                            WidthRequest="36"
+                            HeightRequest="36"
+                            VerticalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackClicked" />
+                        </Border.GestureRecognizers>
+                        <Label Text="←" 
+                               FontSize="18" 
+                               TextColor="{StaticResource TextPrimary}"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                        <Label Text="Settings" 
+                               Style="{StaticResource HeadingLarge}"
+                               TextColor="{StaticResource Primary}" />
+                        <Label Text="Customize your payslip generator experience" 
+                               Style="{StaticResource CaptionText}"
+                               TextColor="{StaticResource TextSecondary}" />
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!-- Appearance Section -->
+            <Frame BackgroundColor="{StaticResource Surface}"
+                   CornerRadius="12"
+                   HasShadow="False"
+                   BorderColor="{StaticResource Gray200}"
+                   Padding="20">
+                <VerticalStackLayout Spacing="20">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                        <Border Grid.Column="0" 
+                                BackgroundColor="{StaticResource Primary}"
+                                WidthRequest="32"
+                                HeightRequest="32"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8"/>
+                            </Border.StrokeShape>
+                            <Label Text="⚙" 
+                                   FontSize="18" 
+                                   TextColor="White"
+                                   FontFamily="SF Pro Display, Segoe UI, system-ui"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Appearance" 
+                                   Style="{StaticResource HeadingSmall}"
+                                   FontSize="16" />
+                            <Label Text="Customize the look and feel of your app" 
+                                   Style="{StaticResource CaptionText}"
+                                   TextColor="{StaticResource TextSecondary}" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Theme Toggle -->
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+                        <Border Grid.Column="0" 
+                                BackgroundColor="{StaticResource Gray100}"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Label Text="◐" 
+                                   FontSize="14" 
+                                   TextColor="{StaticResource TextSecondary}"
+                                   FontFamily="SF Pro Display, Segoe UI, system-ui"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label x:Name="ThemeLabel"
+                                   Text="Dark Mode" 
+                                   Style="{StaticResource BodyText}"
+                                   FontSize="14" />
+                            <Label Text="Switch between light and dark themes" 
+                                   Style="{StaticResource CaptionText}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource TextTertiary}" />
+                        </VerticalStackLayout>
+                        <Switch Grid.Column="2" 
+                                x:Name="ThemeSwitch"
+                                Toggled="OnThemeSwitchToggled"
+                                OnColor="{StaticResource Primary}"
+                                ThumbColor="White"
+                                Scale="0.9" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Data Management Section -->
+            <Frame BackgroundColor="{StaticResource Surface}"
+                   CornerRadius="12"
+                   HasShadow="False"
+                   BorderColor="{StaticResource Gray200}"
+                   Padding="20">
+                <VerticalStackLayout Spacing="20">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                        <Border Grid.Column="0" 
+                                BackgroundColor="{StaticResource Secondary}"
+                                WidthRequest="32"
+                                HeightRequest="32"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8"/>
+                            </Border.StrokeShape>
+                            <Label Text="⚡" 
+                                   FontSize="18" 
+                                   TextColor="White"
+                                   FontFamily="SF Pro Display, Segoe UI, system-ui"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Data Management" 
+                                   Style="{StaticResource HeadingSmall}"
+                                   FontSize="16" />
+                            <Label Text="Manage your company and employee data" 
+                                   Style="{StaticResource CaptionText}"
+                                   TextColor="{StaticResource TextSecondary}" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Export Data -->
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+                        <Border Grid.Column="0" 
+                                BackgroundColor="{StaticResource Gray100}"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Label Text="↓" 
+                                   FontSize="14" 
+                                   TextColor="{StaticResource TextSecondary}"
+                                   FontFamily="SF Pro Display, Segoe UI, system-ui"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Export Data" 
+                                   Style="{StaticResource BodyText}"
+                                   FontSize="14" />
+                            <Label Text="Download your data as backup" 
+                                   Style="{StaticResource CaptionText}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource TextTertiary}" />
+                        </VerticalStackLayout>
+                        <Button Grid.Column="2" 
+                                Text="Export" 
+                                x:Name="ExportDataButton"
+                                Clicked="OnExportDataClicked"
+                                BackgroundColor="{StaticResource Secondary}"
+                                TextColor="White"
+                                CornerRadius="6"
+                                HeightRequest="36"
+                                WidthRequest="80"
+                                FontSize="12" />
+                    </Grid>
+
+                    <!-- Reset Data -->
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+                        <Border Grid.Column="0" 
+                                BackgroundColor="{StaticResource Danger}"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Label Text="↻" 
+                                   FontSize="14" 
+                                   TextColor="White"
+                                   FontFamily="SF Pro Display, Segoe UI, system-ui"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Reset All Data" 
+                                   Style="{StaticResource BodyText}"
+                                   FontSize="14"
+                                   TextColor="{StaticResource Danger}" />
+                            <Label Text="Permanently delete all company and employee data" 
+                                   Style="{StaticResource CaptionText}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource TextTertiary}" />
+                        </VerticalStackLayout>
+                        <Button Grid.Column="2" 
+                                Text="Reset" 
+                                x:Name="ResetDataButton"
+                                Clicked="OnResetDataClicked"
+                                BackgroundColor="{StaticResource Danger}"
+                                TextColor="White"
+                                CornerRadius="6"
+                                HeightRequest="36"
+                                WidthRequest="80"
+                                FontSize="12" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- About Section -->
+            <Frame BackgroundColor="{StaticResource Surface}"
+                   CornerRadius="12"
+                   HasShadow="False"
+                   BorderColor="{StaticResource Gray200}"
+                   Padding="20">
+                <VerticalStackLayout Spacing="20">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                        <Border Grid.Column="0" 
+                                BackgroundColor="{StaticResource Primary}"
+                                WidthRequest="32"
+                                HeightRequest="32"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="16"/>
+                            </Border.StrokeShape>
+                            <Label Text="i" 
+                                   FontSize="18" 
+                                   TextColor="White"
+                                   FontFamily="SF Pro Display, Segoe UI, system-ui"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="About" 
+                                   Style="{StaticResource HeadingSmall}"
+                                   FontSize="16" />
+                            <Label Text="Learn more about this application" 
+                                   Style="{StaticResource CaptionText}"
+                                   TextColor="{StaticResource TextSecondary}" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- App Info -->
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="20">
+                            <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                <Label Text="Version" 
+                                       Style="{StaticResource CaptionText}"
+                                       FontSize="12"
+                                       TextColor="{StaticResource TextTertiary}" />
+                                <Label Text="1.0.0" 
+                                       Style="{StaticResource BodyText}"
+                                       FontSize="14" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="Build" 
+                                       Style="{StaticResource CaptionText}"
+                                       FontSize="12"
+                                       TextColor="{StaticResource TextTertiary}" />
+                                <Label Text="2024.01.15" 
+                                       Style="{StaticResource BodyText}"
+                                       FontSize="14" />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" 
+                                 BackgroundColor="{StaticResource Gray200}" />
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Payslip Generator" 
+                                   Style="{StaticResource HeadingSmall}"
+                                   FontSize="15" />
+                            <Label Text="Professional payslip management system for businesses. Generate, manage, and export payslips with ease." 
+                                   Style="{StaticResource BodyText}"
+                                   FontSize="13"
+                                   TextColor="{StaticResource TextSecondary}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

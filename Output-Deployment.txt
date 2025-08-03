@@ -1,0 +1,125 @@
+﻿	DeviceConfiguration/GetDevices
+		Caller = <GetEmulatorsAsync>d__7
+ConfigurationParser/Constructor: START
+ConfigurationParser/Constructor/EnumeratePackages: START
+Reading tools configuration from Visual Studio installation at 'c:\program files\microsoft visual studio\2022\community\common7\ide\commonextensions\microsoft\tailoredprojectservices'.
+	GlobalConfigurationFolderPresent = False
+	NumberOfPackagesFound = 21
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = 8e61b271-9853-41c9-b845-4d32865c306f
+		Name = App Analysis Collection Agent
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = e0999a8f-0200-4738-ae1e-b45742be6b6b
+		Name = CoreCLR
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = efb65f05-52ca-49fe-9799-0d120b3e8c40
+		Name = Memory Profiler Collection Agent
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = c99f0de0-95fe-4c64-9d17-efa7574c358b
+		Name = Memory Profiler v2 Collection Agent
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = bff8ef71-b423-4e11-8f4b-9ce1061615a2
+		Name = Native Memory Profiler Win10 Collection Agent
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = eb22551a-7f66-465f-b53f-e5aba0c0574e
+		Name = msvsmon native Package
+		Architectures = Arm|X86|X64|Arm64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = 62b807e2-6539-46fb-8d67-a73dc9499940
+		Name = msvsmon managed Package
+		Architectures = Arm|X86|X64|Arm64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = d8b19935-bdbf-4d5b-9619-a6693afd4554
+		Name = msvsmon script Package
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = f4461251-3ffb-4108-9743-364bb931faf2
+		Name = Diagnostics Hub Standard Collector Service
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = 98e13d7b-2ac3-4b11-bbeb-758ad8bd607a
+		Name = Diagnostics Hub Collector Bridge
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = 96f1f3e8-f762-4cd2-8ed9-68ec25c2c722
+		Name = CPU Usage
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = 87c20e3c-a84e-4f56-8bcb-a09a23bfe077
+		Name = DotNetAlloc
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = 4ec3701d-0b28-4ae9-8bc4-20e88ce94c81
+		Name = EventsViewer
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = f1498e2f-1808-4e2a-8c86-b888a59d8446
+		Name = Database
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = db99fe6f-5272-4638-bf5c-c32fc1527b26
+		Name = DotNetAsync
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = b8202f68-c106-47e4-a154-c01594600475
+		Name = DotNetCounters
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = ca2e81b1-5eb3-4dd2-bb00-566fe585cfe1
+		Name = FileIO
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = cc6587b3-a749-4158-989f-1c3bb2b234f5
+		Name = Windows10RemoteTools
+		Architectures = Arm|Arm64|X64|X86
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = 9093ee4a-01e5-44ed-9214-0b4d15023fde
+		Name = XAML UI Debugger package
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = b968cc6a-d2c8-4197-88e3-11662042c291
+		Name = XAML UI Debugger package
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = True
+	ConfigurationParser/Constructor/EnumeratePackages/Package
+		Id = 57e8cc1f-36e5-41b7-972f-80e4f1016bfc
+		Name = XAML UI Debugger dependency Package
+		Architectures = Arm|Arm64|X86|X64
+		VisualStudioPackage = False
+ConfigurationParser/Constructor/EnumeratePackages: END (Success, 0:00:00.104)
+ConfigurationParser/Constructor/EnumerateEmulators: START
+	NumberOfDevicesFound = 0
+ConfigurationParser/Constructor/EnumerateEmulators: END (Success, 0:00:00.282)
+ConfigurationParser/Constructor: END (Success, 0:00:00.434)
+IsEmulatorSupported: START
+	Is64BitOperatingSystem = True
+DetectSlat: START
+	isHyperVRunning = True
+DetectSlat: END (Success, 0:00:00.102)
+	SlatState = SlatAndHWVEnabled
+	IsEmulatorSupported = True
+IsEmulatorSupported: END (Success, 0:00:00.112)

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="faysys_payslip_generator.Views.CompanyInfoTab">
+    
+    <ScrollView BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}">
+        <VerticalStackLayout Padding="32,28" Spacing="28">
+            
+            <!-- Company Logo Section -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource SurfaceDark}}" 
+                   HasShadow="True" 
+                   CornerRadius="16" 
+                   Padding="28"
+                   BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                   Margin="0,4">
+                <Frame.Shadow>
+                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray800}}" 
+                            Offset="0,4" 
+                            Radius="12" 
+                            Opacity="0.08" />
+                </Frame.Shadow>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Company Logo" 
+                           Style="{StaticResource HeadingSmall}"
+                           HorizontalOptions="Start" />
+                    
+                    <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray700}}"
+                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                            StrokeThickness="2"
+                            StrokeDashArray="6,6"
+                            HeightRequest="80"
+                            WidthRequest="80"
+                            HorizontalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Image x:Name="CompanyLogoImage" 
+                               Source="dotnet_bot.png" 
+                               Aspect="AspectFit"
+                               Margin="6" />
+                    </Border>
+                    
+                    <Button Text="Upload Logo" 
+                            x:Name="UploadLogoButton" 
+                            Clicked="OnUploadLogoClicked"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="{StaticResource TextOnPrimary}"
+                            CornerRadius="8"
+                            HeightRequest="36"
+                            HorizontalOptions="Center"
+                            WidthRequest="100"
+                            FontSize="13"
+                            FontAttributes="Bold">
+                        <Button.Shadow>
+                            <Shadow Brush="{StaticResource Primary}" 
+                                    Offset="0,2" 
+                                    Radius="6" 
+                                    Opacity="0.2" />
+                        </Button.Shadow>
+                    </Button>
+                    
+                    <Label Text="PNG, JPG up to 5MB" 
+                           FontSize="12" 
+                           TextColor="{StaticResource TextTertiary}"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Company Details -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource SurfaceDark}}" 
+                   HasShadow="True" 
+                   CornerRadius="16" 
+                   Padding="28"
+                   BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                   Margin="0,4">
+                <Frame.Shadow>
+                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray800}}" 
+                            Offset="0,4" 
+                            Radius="12" 
+                            Opacity="0.08" />
+                </Frame.Shadow>
+                <VerticalStackLayout Spacing="20">
+                    <Label Text="Company Details" 
+                           Style="{StaticResource HeadingSmall}" />
+                    
+                    <VerticalStackLayout Spacing="16">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Company Name *" 
+                                   FontSize="14" 
+                                   TextColor="{StaticResource TextSecondary}" />
+                            <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                    StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8"/>
+                                </Border.StrokeShape>
+                                <Entry x:Name="CompanyNameEntry" 
+                                       Placeholder="Enter company name"
+                                       BackgroundColor="Transparent"
+                                       FontSize="15"
+                                       HeightRequest="48"
+                                       Margin="16,0" />
+                            </Border>
+                        </VerticalStackLayout>
+                        
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Address" 
+                                   FontSize="14" 
+                                   TextColor="{StaticResource TextSecondary}" />
+                            <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                    StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8"/>
+                                </Border.StrokeShape>
+                                <Entry x:Name="CompanyAddressEntry" 
+                                       Placeholder="Enter company address"
+                                       BackgroundColor="Transparent"
+                                       FontSize="15"
+                                       HeightRequest="48"
+                                       Margin="16,0" />
+                            </Border>
+                        </VerticalStackLayout>
+                        
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                            <VerticalStackLayout Grid.Column="0" Spacing="8">
+                                <Label Text="City, Pincode" 
+                                       FontSize="14" 
+                                       TextColor="{StaticResource TextSecondary}" />
+                                <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                        StrokeThickness="1">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="8"/>
+                                    </Border.StrokeShape>
+                                    <Entry x:Name="CityPincodeEntry" 
+                                           Placeholder="City, Pincode"
+                                           BackgroundColor="Transparent"
+                                           FontSize="15"
+                                           HeightRequest="48"
+                                           Margin="16,0" />
+                                </Border>
+                            </VerticalStackLayout>
+                            
+                            <VerticalStackLayout Grid.Column="1" Spacing="8">
+                                <Label Text="Country" 
+                                       FontSize="14" 
+                                       TextColor="{StaticResource TextSecondary}" />
+                                <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                        StrokeThickness="1">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="8"/>
+                                    </Border.StrokeShape>
+                                    <Entry x:Name="CountryEntry" 
+                                           Text="India"
+                                           Placeholder="Country"
+                                           BackgroundColor="Transparent"
+                                           FontSize="15"
+                                           HeightRequest="48"
+                                           Margin="16,0" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                    
+                    <Button Text="Save Company Information" 
+                            x:Name="SaveCompanyButton" 
+                            Clicked="OnSaveCompanyClicked"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="{StaticResource TextOnPrimary}"
+                            CornerRadius="10"
+                            HeightRequest="52"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            HorizontalOptions="End"
+                            WidthRequest="220">
+                        <Button.Shadow>
+                            <Shadow Brush="{StaticResource Primary}" 
+                                    Offset="0,3" 
+                                    Radius="8" 
+                                    Opacity="0.25" />
+                        </Button.Shadow>
+                    </Button>
+                </VerticalStackLayout>
+            </Frame>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

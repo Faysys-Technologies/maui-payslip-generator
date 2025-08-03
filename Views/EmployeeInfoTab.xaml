@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="faysys_payslip_generator.Views.EmployeeInfoTab">
+    
+    <ScrollView BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}">
+        <VerticalStackLayout Padding="32,28" Spacing="28">
+            
+            <!-- Employee Search/Selection -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource SurfaceDark}}" 
+                   HasShadow="True" 
+                   CornerRadius="16" 
+                   Padding="28"
+                   BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                   Margin="0,4">
+                <Frame.Shadow>
+                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray800}}" 
+                            Offset="0,4" 
+                            Radius="12" 
+                            Opacity="0.08" />
+                </Frame.Shadow>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Employee Selection" 
+                           Style="{StaticResource HeadingSmall}"
+                           Margin="0,0,0,8" />
+                    
+                    <VerticalStackLayout Spacing="12">
+                        <!-- Search by Code -->
+                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12">
+                            <Border Grid.Column="0" BackgroundColor="{StaticResource BackgroundSecondary}"
+                                    Stroke="{StaticResource Gray200}"
+                                    StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="6"/>
+                                </Border.StrokeShape>
+                                <Entry x:Name="EmployeeCodeEntry" 
+                                       Placeholder="Enter employee code"
+                                       BackgroundColor="Transparent"
+                                       TextColor="{StaticResource TextPrimary}"
+                                       PlaceholderColor="{StaticResource TextTertiary}"
+                                       FontSize="14"
+                                       HeightRequest="44"
+                                       Margin="12,0"
+                                       TextChanged="OnEmployeeCodeChanged" />
+                            </Border>
+                            
+                            <Button Grid.Column="1" 
+                                    Text="Search" 
+                                    x:Name="SearchEmployeeButton"
+                                    Clicked="OnSearchEmployeeClicked"
+                                    BackgroundColor="{StaticResource Tertiary}"
+                                    TextColor="{StaticResource TextOnPrimary}"
+                                    CornerRadius="8"
+                                    HeightRequest="48"
+                                    WidthRequest="90"
+                                    FontSize="15"
+                                    FontAttributes="Bold">
+                                <Button.Shadow>
+                                    <Shadow Brush="{StaticResource Tertiary}" 
+                                            Offset="0,2" 
+                                            Radius="6" 
+                                            Opacity="0.2" />
+                                </Button.Shadow>
+                            </Button>
+                            
+                            <Button Grid.Column="2" 
+                                    Text="New" 
+                                    x:Name="NewEmployeeButton"
+                                    Clicked="OnNewEmployeeClicked"
+                                    BackgroundColor="{StaticResource Secondary}"
+                                    TextColor="{StaticResource TextOnPrimary}"
+                                    CornerRadius="8"
+                                    HeightRequest="48"
+                                    WidthRequest="80"
+                                    FontSize="15"
+                                    FontAttributes="Bold">
+                                <Button.Shadow>
+                                    <Shadow Brush="{StaticResource Secondary}" 
+                                            Offset="0,2" 
+                                            Radius="6" 
+                                            Opacity="0.2" />
+                                </Button.Shadow>
+                            </Button>
+                        </Grid>
+                        
+                        <!-- OR Separator -->
+                        <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="12">
+                            <BoxView Grid.Column="0" 
+                                     HeightRequest="1" 
+                                     BackgroundColor="{StaticResource Gray300}" 
+                                     VerticalOptions="Center" />
+                            <Label Grid.Column="1" 
+                                   Text="OR" 
+                                   FontSize="12" 
+                                   TextColor="{StaticResource TextTertiary}" 
+                                   VerticalOptions="Center" />
+                            <BoxView Grid.Column="2" 
+                                     HeightRequest="1" 
+                                     BackgroundColor="{StaticResource Gray300}" 
+                                     VerticalOptions="Center" />
+                        </Grid>
+                        
+                        <!-- Select from Dropdown -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Select from existing employees" 
+                                   FontSize="14" 
+                                   TextColor="{StaticResource TextSecondary}" />
+                            <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                    StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8"/>
+                                </Border.StrokeShape>
+                                <Picker x:Name="EmployeeDropdown" 
+                                        Title="Choose an employee"
+                                        BackgroundColor="Transparent"
+                                        TextColor="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryDark}}"
+                                        TitleColor="{AppThemeBinding Light={StaticResource TextTertiary}, Dark={StaticResource TextTertiaryDark}}"
+                                        FontSize="15"
+                                        HeightRequest="48"
+                                        SelectedIndexChanged="OnEmployeeDropdownChanged" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Employee Details Form -->
+            <Frame x:Name="EmployeeDetailsFrame"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource SurfaceDark}}" 
+                   HasShadow="True" 
+                   CornerRadius="16" 
+                   Padding="28"
+                   BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                   Margin="0,4"
+                   IsVisible="False">
+                <Frame.Shadow>
+                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray800}}" 
+                            Offset="0,4" 
+                            Radius="12" 
+                            Opacity="0.08" />
+                </Frame.Shadow>
+                <VerticalStackLayout Spacing="20">
+                    <Label Text="Employee Information" 
+                           Style="{StaticResource HeadingSmall}"
+                           Margin="0,0,0,8" />
+                    
+                    <VerticalStackLayout Spacing="16">
+                        <!-- Original Employee Fields -->
+                        <VerticalStackLayout Spacing="16">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="Employee Name *" 
+                                       FontSize="14" 
+                                       TextColor="{StaticResource TextSecondary}" />
+                                                                    <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                            StrokeThickness="1">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8"/>
+                                        </Border.StrokeShape>
+                                        <Entry x:Name="EmployeeNameEntry" 
+                                               Placeholder="Enter Employee Name"
+                                               BackgroundColor="Transparent"
+                                               TextColor="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryDark}}"
+                                               PlaceholderColor="{AppThemeBinding Light={StaticResource TextTertiary}, Dark={StaticResource TextTertiaryDark}}"
+                                               FontSize="15"
+                                               HeightRequest="48"
+                                               Margin="12,0" />
+                                    </Border>
+                            </VerticalStackLayout>
+                            
+                            <!-- Pay Period -->
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="Pay Period" 
+                                       FontSize="14" 
+                                       TextColor="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryDark}}" />
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                                    <Border Grid.Column="0" BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                            StrokeThickness="1">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8"/>
+                                        </Border.StrokeShape>
+                                        <Picker x:Name="MonthPicker" 
+                                                Title="Select Month"
+                                                BackgroundColor="Transparent"
+                                                TextColor="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryDark}}"
+                                                TitleColor="{AppThemeBinding Light={StaticResource TextTertiary}, Dark={StaticResource TextTertiaryDark}}"
+                                                FontSize="15"
+                                                HeightRequest="48"
+                                                Margin="12,0"
+                                                FontFamily="Inter, SF Pro Display, Segoe UI, Roboto, system-ui" />
+                                    </Border>
+                                    <Border Grid.Column="1" BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                            StrokeThickness="1">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8"/>
+                                        </Border.StrokeShape>
+                                        <Picker x:Name="YearPicker" 
+                                                Title="Select Year"
+                                                BackgroundColor="Transparent"
+                                                TextColor="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryDark}}"
+                                                TitleColor="{AppThemeBinding Light={StaticResource TextTertiary}, Dark={StaticResource TextTertiaryDark}}"
+                                                FontSize="15"
+                                                HeightRequest="48"
+                                                Margin="12,0"
+                                                FontFamily="Inter, SF Pro Display, Segoe UI, Roboto, system-ui" />
+                                    </Border>
+                                </Grid>
+                            </VerticalStackLayout>
+                            
+                            <!-- Employee Details Grid -->
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowSpacing="16">
+                                <!-- Employee Code -->
+                                <VerticalStackLayout Grid.Column="0" Spacing="8">
+                                    <Label Text="Employee Code" 
+                                           FontSize="14" 
+                                           TextColor="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryDark}}" />
+                                    <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                            StrokeThickness="1">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8"/>
+                                        </Border.StrokeShape>
+                                        <Entry x:Name="EmployeeCodeDisplayEntry" 
+                                               Placeholder="e.g. EMP001"
+                                               BackgroundColor="Transparent"
+                                               TextColor="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryDark}}"
+                                               PlaceholderColor="{AppThemeBinding Light={StaticResource TextTertiary}, Dark={StaticResource TextTertiaryDark}}"
+                                               FontSize="15"
+                                               HeightRequest="48"
+                                               Margin="12,0" />
+                                    </Border>
+                                </VerticalStackLayout>
+                                
+                                <!-- Paid Days -->
+                                <VerticalStackLayout Grid.Column="1" Spacing="8">
+                                    <Label Text="Paid Days" 
+                                           FontSize="14" 
+                                           TextColor="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryDark}}" />
+                                    <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                            StrokeThickness="1">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8"/>
+                                        </Border.StrokeShape>
+                                        <Entry x:Name="PaidDaysEntry" 
+                                               Placeholder="e.g. 22"
+                                               Keyboard="Numeric"
+                                               BackgroundColor="Transparent"
+                                               TextColor="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryDark}}"
+                                               PlaceholderColor="{AppThemeBinding Light={StaticResource TextTertiary}, Dark={StaticResource TextTertiaryDark}}"
+                                               FontSize="15"
+                                               HeightRequest="48"
+                                               Margin="12,0" />
+                                    </Border>
+                                </VerticalStackLayout>
+                            </Grid>
+                            
+                            <!-- Loss of Pay Days and Pay Date -->
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowSpacing="16">
+                                <VerticalStackLayout Grid.Column="0" Spacing="8">
+                                    <Label Text="Loss of Pay Days" 
+                                           FontSize="14" 
+                                           TextColor="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryDark}}" />
+                                    <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                            StrokeThickness="1">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8"/>
+                                        </Border.StrokeShape>
+                                        <Entry x:Name="LossOfPayDaysEntry" 
+                                               Placeholder="0"
+                                               Keyboard="Numeric"
+                                               BackgroundColor="Transparent"
+                                               TextColor="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryDark}}"
+                                               PlaceholderColor="{AppThemeBinding Light={StaticResource TextTertiary}, Dark={StaticResource TextTertiaryDark}}"
+                                               FontSize="15"
+                                               HeightRequest="48"
+                                               Margin="12,0" />
+                                    </Border>
+                                </VerticalStackLayout>
+                                
+                                <VerticalStackLayout Grid.Column="1" Spacing="8">
+                                    <Label Text="Pay Date" 
+                                           FontSize="14" 
+                                           TextColor="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryDark}}" />
+                                    <Border BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundSecondary}, Dark={StaticResource BackgroundSecondaryDark}}"
+                                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                                            StrokeThickness="1">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8"/>
+                                        </Border.StrokeShape>
+                                        <DatePicker x:Name="PayDatePicker" 
+                                                    BackgroundColor="Transparent"
+                                                    TextColor="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryDark}}"
+                                                    FontSize="15"
+                                                    HeightRequest="48"
+                                                    Margin="12,0"
+                                                    FontFamily="Inter, SF Pro Display, Segoe UI, Roboto, system-ui" />
+                                    </Border>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </VerticalStackLayout>
+                        
+                        <!-- Dynamic Employee Fields Container -->
+                        <VerticalStackLayout x:Name="DynamicEmployeeFieldsContainer" Spacing="12">
+                            <!-- Dynamic fields will be added here -->
+                        </VerticalStackLayout>
+                        
+                        <!-- Add Field Button -->
+                        <Button Text="+ Add Custom Field" 
+                                Clicked="OnAddEmployeeFieldClicked" 
+                                x:Name="AddEmployeeFieldButton"
+                                BackgroundColor="{StaticResource Tertiary}"
+                                TextColor="{StaticResource TextOnPrimary}"
+                                CornerRadius="8"
+                                HeightRequest="44"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Start"
+                                WidthRequest="180"
+                                Margin="0,8,0,0">
+                            <Button.Shadow>
+                                <Shadow Brush="{StaticResource Tertiary}" 
+                                        Offset="0,2" 
+                                        Radius="6" 
+                                        Opacity="0.2" />
+                            </Button.Shadow>
+                        </Button>
+                    </VerticalStackLayout>
+                    
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                        <Button Grid.Column="0"
+                                Text="Save Employee Information" 
+                                x:Name="SaveEmployeeButton" 
+                                Clicked="OnSaveEmployeeClicked"
+                                BackgroundColor="{StaticResource Primary}"
+                                TextColor="{StaticResource TextOnPrimary}"
+                                CornerRadius="10"
+                                HeightRequest="52"
+                                FontSize="15"
+                                FontAttributes="Bold">
+                            <Button.Shadow>
+                                <Shadow Brush="{StaticResource Primary}" 
+                                        Offset="0,3" 
+                                        Radius="8" 
+                                        Opacity="0.25" />
+                            </Button.Shadow>
+                        </Button>
+                        
+                        <Button Grid.Column="1"
+                                Text="Delete" 
+                                x:Name="DeleteEmployeeButton" 
+                                Clicked="OnDeleteEmployeeClicked"
+                                BackgroundColor="{StaticResource Danger}"
+                                TextColor="{StaticResource TextOnPrimary}"
+                                CornerRadius="10"
+                                HeightRequest="52"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                WidthRequest="100"
+                                IsVisible="False">
+                            <Button.Shadow>
+                                <Shadow Brush="{StaticResource Danger}" 
+                                        Offset="0,3" 
+                                        Radius="8" 
+                                        Opacity="0.25" />
+                            </Button.Shadow>
+                        </Button>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>
